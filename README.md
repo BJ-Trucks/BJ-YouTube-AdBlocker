@@ -8,7 +8,7 @@
     Youtube Adblocker is a chrome extension for blocking ads on the YouTube site.
 </p>
 
-## ▶️ Instalasi
+## ▶️ Installation
 Installing this extension is very easy, follow the steps below. 
 ### 💻 PC/Desktop
 1. Clone This Repository
