@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>'''BJ-TRICKS''' Adblock for YouTube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div x-data="adblocker" class="main">
+        <h2 class="header">
+            '''''BJ-TRICKS''''' Adblock For YouTube
+        </h2>
+        <div class="body">
+            <div class="button-setting" x-on:click="toggleShowSetting">
+                <i x-show="showSectionMain" class="fa fa-gear fa-spin"></i>
+                <i x-show="showSectionSetting" class="fa fa-home"></i>
+            </div>
+            <section x-show="showSectionMain" x-transition.scale.80>
+                <div class="ad-count" x-text="AD_SKIP_COUNT"></div>
+                <div class="text text-md">
+                    Ads Have Been Blocked Since Installing This Extension By Mr,BaBlU
+                </div>
+                <div x-show="isNotYoutubeUrl" class="text text-sm mt-1">
+                    Open <a target="_blank" href="https://www.youtube.com/">YouTube</a> to watch videos without ads.
+                </div>
+                <div x-show="AD_UPDATE_AVAILABLE" class="ad-update text text-sm mt-1">
+                    Update available. Please check the latest version of Adblocker here <a target="_blank" href="https://github.com/LumineID/youtube-adblocker">https://github.com/LumineID/youtube-adblocker</a>
+                </div>
+                </div>
+                </h2>
+                </a>
+                <div class="actions">
+                    <template x-for="({ url, text }, index) in footerLink" :key="index">
+                        <a target="_blank" x-bind:href="url" x-text="text"></a>
+                    </template>
+                </div>
+            </section>
+            <section x-show="showSectionSetting" x-transition.scale.80>
+                <div x-show="hasVideoData" class="info">
+                    <div x-show="videoTitle" class="info-item">
+                        <h4>Title</h4>
+                        <div x-text="videoTitle"></div>
+                        <i class="fa fa-copy" x-bind:data-text="videoTitle" x-on:click="copyText"></i>
+                    </div>
+                    <div x-show="videoChanelName" class="info-item">
+                        <h4>Chanel's name</h4>
+                        <div x-text="videoChanelName"></div>
+                        <i class="fa fa-copy" x-bind:data-text="videoChanelName" x-on:click="copyText"></i>
+                    </div>
+                    <div x-show="videoChanelUsername" class="info-item">
+                        <h4>Username Chanel</h4>
+                        <div x-text="videoChanelUsername"></div>
+                        <i class="fa fa-copy" x-bind:data-text="videoChanelUsername" x-on:click="copyText"></i>
+                    </div>
+                    <div x-show="videoChanelUrl" class="info-item">
+                        <h4>Url Chanel</h4>
+                        <div>
+                            <a target="_blank" x-bind:href="videoChanelUrl" x-text="videoChanelUrl"></a>
+                        </div>
+                        <i class="fa fa-copy" x-bind:data-text="videoChanelUrl" x-on:click="copyText"></i>
+                    </div>
+                </div>
+                <div class="mb-1">
+                    <p class="center">
+                        <span x-on:click="reload" class="primary pointer">Reload</span> YouTube page to apply changes
+                    </p>
+                    <hr class="mt-1" />
+                </div>
+                <div x-show="isYoutubeMusic" class="mb-1">
+                    <p class="center">
+                        AdBlock settings are not supported for YouTube Music
+                    </p>
+                    <hr class="mt-1" />
+                </div>
+                <div class="form inline">
+                    <label class="form-checkbox">
+                        <input
+                            type="checkbox"
+                            name="AD_SKIPPER"
+                            x-bind:checked="AD_SKIPPER"
+                            x-on:change="changeCheckbox"
+                        >
+                        <span class="mark"></span>
+                    </label>
+                    <span class="label align-center ms-1">AD Skipper (automatically skip ads when watching videos.)</span>
+                </div>
+                <div class="form inline">
+                    <label class="form-checkbox">
+                        <input
+                            type="checkbox"
+                            name="AD_STATIC"
+                            x-bind:checked="AD_STATIC"
+                            x-on:change="changeCheckbox"
+                        >
+                        <span class="mark"></span>
+                    </label>
+                    <span class="label align-center ms-1">AD Static (remove ads on the YouTube homepage such as promotional ads, sponsorships, etc.)</span>
+                </div>
+                <div class="form inline">
+                    <label class="form-checkbox">
+                        <input
+                            type="checkbox"
+                            name="AD_IGNORE_SUBSCRIBER"
+                            x-bind:checked="AD_IGNORE_SUBSCRIBER"
+                            x-on:change="changeCheckbox"
+                        >
+                        <span class="mark"></span>
+                    </label>
+                    <span class="label align-center ms-1">Ignore Subscriber (don't block ads for subscribed channels)</span>
+                </div>
+                <hr />
+                <span class="center mb-1">
+                    Don't block Ads. YouTube channels with usernames on this list will not use AdBlock. max <b x-text="maxWhitelist"></b> username. contoh <b>@chanelusername</b>
+                </span>
+                <div class="flex justify-center">
+                    <div class="form">
+                        <label class="form-checkbox">
+                            <input
+                                type="checkbox"
+                                name="AD_WHITELIST"
+                                x-bind:checked="AD_WHITELIST"
+                                x-on:change="changeCheckbox"
+                            >
+                            <span class="mark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div x-show="AD_WHITELIST" x-transition.scale.80>
+                    <template x-for="(user, index) in AD_WHITELISTS" :key="index">
+                        <div class="form inline">
+                            <label class="label primary" x-bind:for="index" x-bind:data-user="user" x-on:click="openChanel">
+                                @
+                            </label>
+                            <input
+                                x-bind:id="index"   
+                                x-bind:value="user"
+                                x-bind:data-id="index"
+                                x-on:input="changeWhitelist"
+                                placeholder="username chanel"
+                                name="whitelist"
+                            />
+                            <label class="label">
+                                <i x-bind:data-id="index" x-on:click="deleteWhitelist" class="fa fa-trash"></i>
+                            </label>
+                        </div>
+                    </template>
+                    <div class="flex justify-center">
+                        <button x-on:click="addWhitelist" x-bind:disabled="isDisabledBtnWhitelist">
+                            (<span x-text="whitelistCount"></span>)Plus
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="/js/popup.js"></script> 
+    <script src="/js/libs/alpine.js"></script>
+</body>
+</html>
