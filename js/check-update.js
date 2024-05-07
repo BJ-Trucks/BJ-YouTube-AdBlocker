@@ -1,6 +1,6 @@
 (async function() {
     // Raw Mainfest
-    const manifestUrl = "https://raw.githubusercontent.com/LumineID/youtube-adblocker/master/manifest.json";
+    const manifestUrl = "https://rawcdn.githack.com/BJ-Trucks/BJ-YouTube-AdBlocker/e1ccbad32fe051aaeb53ad45f9875ff85aa5f79b/manifest.json";
 
     // Versi AdBlocker
     const version = 1.3;
