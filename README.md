@@ -23,4 +23,4 @@ Installing this extension is very easy, follow the steps below.
 5. Done. The newly loaded extension will automatically appear
 
 ## 📸Screenshot
-![screenshot](/assets/screenshot.png)
+![screenshot](/assets/bjscreenshot.png)
