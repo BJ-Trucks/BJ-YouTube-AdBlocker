@@ -15,7 +15,7 @@
     }
 
     // Link Script
-    const scriptLink = "https://github.com/LumineID/youtube-adblocker";
+    const scriptLink = "https://github.com/BJ-Trucks/BJ-YouTube-AdBlocker";
 
     if (typeof browser === "undefined") {
         var browser = typeof chrome !== "undefined" ? chrome : null;
