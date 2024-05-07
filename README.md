@@ -16,7 +16,7 @@ Installing this extension is very easy, follow the steps below.
 3. Activate **Developer Mode**
 4. Load the unpacked extension and then select the repository folder
 ### 📱Android
-1. Download the file [youtube-adblocker.zip](https://github.com/LumineID/youtube-adblocker/archive/refs/heads/master.zip) from this repository
+1. Download the file [youtube-adblocker.zip](https://github.com/BJ-Trucks/BJ-YouTube-AdBlocker/archive/refs/heads/master.zip) from this repository
 2. Download a browser that supports extensions such as [Kiwi Browser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser&pcampaignid=web_share) and go to [chrome://extensions]( chrome://extensions) using a browser that supports extensions
 3. Activate **Developer Mode**
 4. Load **+ (from .zip/crx/.user.js)** and select the **zip** file you just downloaded
